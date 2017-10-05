@@ -225,6 +225,7 @@ function ContentController(powerzap) {
     var file = (message.file) ? message.file : message.url;
     var type = ('type' in message && message.type) ? message.type : 0;
     var text = '';
+
     switch(parseInt(type)) {
       case 1: //Image
         text = '<a class="btn-image" href="' + file + '" target="_blank"><img src="' + file + ((file.substr(0,4) != "blob" ? '?w=160' : '')) + '" width="160" alt="Foto" /></a>';
@@ -244,7 +245,11 @@ function ContentController(powerzap) {
       case 7: //Document
         text =  '<a target="_blank" href="' + file + '">Ver arquivo</a>';
         break;
+      case 10: //Event
+        return element;
+        break;
     }
+
     if(text.length) {
       $(element).find("p").prepend(text).parent().addClass('message-bubble-' + position);
     }
